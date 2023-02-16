@@ -10,7 +10,7 @@ then
     echo "File Found"
 else
     echo "File Not Found"
-    exit
+    exit 1
 fi
 
 cp ListExamples.java ..
@@ -22,7 +22,20 @@ javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java 2> compile-err
 if [[ $? -ne 0 ]]
 then
     echo "Compile Error"
+    echo "Grade: Fail"
+    exit 2
+else
+    echo "Compile Success"
 fi
 
 java -cp ".:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar" org.junit.runner.JUnitCore TestListExamples > runtime-error.txt
-cat runtime-error.txt
+
+if [[ $? -ne 0 ]]
+then
+    cat runtime-error.txt
+    echo "Grade: Fail"
+else
+    echo "Runtime Success"
+    echo "Grade: Pass"
+fi
+
