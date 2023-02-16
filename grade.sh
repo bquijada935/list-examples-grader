@@ -21,8 +21,7 @@ javac -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar *.java 2> compile-err
 
 if [[ $? -ne 0 ]]
 then
-    echo "Compile Error"
-    echo "Grade: Fail"
+    echo "Compile Error - Grade: Fail"
     exit 2
 else
     echo "Compile Success"
@@ -33,7 +32,7 @@ java -cp ".:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar" org.junit.runner.JUn
 if [[ $? -ne 0 ]]
 then
     cat runtime-error.txt
-    echo "Grade: Fail"
+    echo "Runtime Error - Grade: Fail"
 else
     echo "Runtime Success"
     echo "Grade: Pass"
