@@ -37,4 +37,7 @@ else
     echo "Runtime Success"
     echo "Grade: Pass"
 fi
+cp student-submission/ListExamples.java ./
+javac -cp $CPATH *.java
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples
 
